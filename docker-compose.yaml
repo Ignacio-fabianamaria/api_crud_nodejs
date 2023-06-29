@@ -18,9 +18,11 @@ services:
       restart: always
       environment:
          MYSQL_ROOT_PASSWORD: root
-         MYSQL_DATABASE: database
+         MYSQL_DATABASE: customerManagement
       ports:
          - "33060:3306"
+      volumes:
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql   
 
 # Nesse arquivo "docker-compose.yaml" foi definido um serviço chamado 'database'
 # O serviço database inicializará um contaner Docker com a imagem do servidor MySQL versão 8.0.29
