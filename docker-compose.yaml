@@ -1,0 +1,41 @@
+version: '3'
+services:
+   node:
+      build: 
+         dockerfile: ./Dockerfile
+         context: .
+      container_name: api_crud
+      restart: always
+      working_dir: /app
+      volumes:
+      - ./:/app
+      ports:
+      - 3000:3000
+      depends_on:
+      - "database"
+   database:
+      image: mysql:8.0.29
+      restart: always
+      environment:
+         MYSQL_ROOT_PASSWORD: root
+         MYSQL_DATABASE: database
+      ports:
+         - "33060:3306"
+
+# Nesse arquivo "docker-compose.yaml" foi definido um serviço chamado 'database'
+# O serviço database inicializará um contaner Docker com a imagem do servidor MySQL versão 8.0.29
+# O parâmetro 'restart' definido como "always", define a política de reinicio do container para que sempre seja reiniciado automaticamente em caso de parada
+# O parâmetro environment é definido com duas variáveis dentro do container:
+#   - MYSQL_ROOT_PASSWORD: define a senha do usuário root que será utilizada para acessar o MySQL
+#   - MYSQL_DATABASE: define o nome do banco de dados que será criado ao iniciar o MySQL
+# O parâmetro ports vincula uma porta do computador local(a porta 33060) a uma porta dentro do container(a porta 3306)
+
+# Nesse arquivo "docker-compose.yaml" foi definido um serviço chamado 'node'
+# O serviço 'node' é responsável por executar um contêiner Docker com um aplicativo Node.js
+# O parâmetro 'build' especifica que a imagem do contêiner será construída a partir do Dockerfile localizado no diretório atual (./Dockerfile)
+# O parâmetro 'container_name' define o nome do contêiner como 'api_crud'
+# O parâmetro 'restart' com o valor 'always' indica que o contêiner será reiniciado automaticamente em caso de parada
+# O parâmetro 'working_dir' define o diretório de trabalho dentro do contêiner como '/app'
+# O parâmetro 'volumes' faz um mapeamento entre o diretório atual do host e o diretório '/app' do contêiner, permitindo o acesso aos arquivos do aplicativo
+# O parâmetro 'ports' mapeia a porta 3000 do host para a porta 3000 do contêiner, permitindo acessar o aplicativo Node.js em execução
+# O parâmetro 'depends_on' especifica que este serviço depende do serviço "database" e garante que o serviço "database" seja iniciado antes deste
