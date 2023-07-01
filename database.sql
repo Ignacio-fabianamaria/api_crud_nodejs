@@ -10,7 +10,7 @@ CREATE TABLE salesperson (
     last_name VARCHAR(45) NOT NULL,
     date_of_birth DATE,
     email VARCHAR(60) NOT NULL,
-    password VARCHAR(45) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     PRIMARY KEY(id)
 );
 
