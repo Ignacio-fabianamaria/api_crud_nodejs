@@ -1,7 +1,16 @@
-const {connection} = require('../db/connection')
+const connection = require("../db/connection");
 
-const getAll = async()=>{
-    const query = 'SELECT *  FROM customerManagement.salesperson'
-    const salesperson = await connection.execute(query)
-    return salesperson
-}
+const getAll = async () => {
+  const query = "SELECT * FROM salesperson";
+  const [rows] = await connection.execute(query)
+  return rows;
+};
+
+const create = async () => {
+    
+};
+
+module.exports = {
+  getAll,
+  create
+};

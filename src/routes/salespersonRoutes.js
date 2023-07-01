@@ -1,9 +1,10 @@
 const express = require('express')
+const salespersonController = require('../controller/salespersonController')
 
 const router = express.Router()
 
-const salespersonController = require('../controller/salespersonController')
 
-router.get('salesperson', salespersonController.getAll)
+router.get('/', salespersonController.getAll)
+router.post('/', salespersonController.create)
 
 module.exports = router
