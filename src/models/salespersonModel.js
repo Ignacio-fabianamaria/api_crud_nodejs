@@ -6,8 +6,20 @@ const getAll = async () => {
   return rows;
 };
 
-const create = async () => {
-    
+const create = async (first_name, last_name, date_of_birth, email, password) => {
+  const query = `INSERT INTO salesperson (first_name, last_name, date_of_birth, email, password)
+  VALUES (?, ?, ?, ?, ?)`
+  const [result] = await connection.execute(
+    query,
+    [
+      first_name,
+      last_name,
+      date_of_birth,
+      email,
+      password
+    ]
+    )
+  return { id: result.insertId, first_name, last_name, date_of_birth, email };
 };
 
 module.exports = {
