@@ -33,3 +33,7 @@ describe('SalesPerson endpoint tests', function () {
   })
   afterEach(sinon.restore)
 })
+
+// sinon.stub(connection, 'execute') - substitui o comportamento da função execute do objeto
+// connection, retornando uma promessa resolvida com mockSalesPersonList.
+// Isso permite isolar o teste e evitar a necessidade de se conectar ao banco de dados real durante a execução dos testes
